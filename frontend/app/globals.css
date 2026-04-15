@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '@fontsource/bebas-neue';
+@import '@fontsource/montserrat/700.css';
+@import '@fontsource/oswald/700.css';
+@import '@fontsource/anton';
+@import '@fontsource/raleway/700.css';
+@import '@fontsource/cinzel/700.css';
+
+:root {
+  --bg: #080808;
+  --surface: #111111;
+  --border: #1f1f1f;
+  --gold: #F5C518;
+  --text: #ffffff;
+  --muted: #888888;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+/* Glass morphism surface */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Gold glow utility */
+.gold-glow {
+  box-shadow: 0 0 20px 2px rgba(245, 197, 24, 0.25);
+}
+
+/* Score badge */
+.score-high { background: #16a34a20; color: #22c55e; border: 1px solid #22c55e40; }
+.score-mid  { background: #ca8a0420; color: #eab308; border: 1px solid #eab30840; }
+.score-low  { background: #dc262620; color: #ef4444; border: 1px solid #ef444440; }
+
+/* Step nav */
+.step-active { color: #F5C518; border-bottom: 2px solid #F5C518; }
+.step-done { color: #22c55e; }
+.step-inactive { color: #555; }
+
+/* WaveSurfer override */
+wave { border-radius: 4px; }
+
+/* Fabric canvas wrapper */
+.canvas-container { border-radius: 8px; overflow: hidden; }
