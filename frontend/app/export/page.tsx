@@ -220,7 +220,7 @@ export default function ExportPage() {
                           {/* Inline preview */}
                           <div className="bg-black aspect-video">
                             <video
-                              src={withKey(backendUrl(r.url))}
+                              src={withKey(backendUrl(r.url ?? ''))}
                               controls
                               className="w-full h-full object-contain"
                             />
