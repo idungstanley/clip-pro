@@ -83,7 +83,7 @@ export default function StudioPage() {
     seenClipIds.current.clear();
     setPollProgress(0); setPollMessage(''); setPollStage(''); setPollError(null);
 
-    const res = await fetch('/api/analyze/start', {
+    const res = await fetch(backendUrl('/api/analyze/start?api_key=5bf4de01b2163020a62d842b6fa1905a411626e934deb92d3b8f61876c623866'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -107,7 +107,7 @@ export default function StudioPage() {
 
     const interval = setInterval(async () => {
       try {
-        const res = await fetch(`/api/analyze/status/${analysisJobId}`);
+        const res = await fetch(backendUrl(`/api/analyze/status/${analysisJobId}?api_key=5bf4de01b2163020a62d842b6fa1905a411626e934deb92d3b8f61876c623866`));
         const data = await res.json();
         if (!data.found) return;
 
@@ -268,7 +268,7 @@ export default function StudioPage() {
               <div className="relative bg-black aspect-video max-h-[55vh] w-full">
                 <video
                   key={activeMoment.id}
-                  src={withKey(backendUrl(`/api/video/stream?path=${encodeURIComponent(video.path)}#t=${activeMoment.trim_start ?? activeMoment.start_time},${activeMoment.trim_end ?? activeMoment.end_time}`))}
+                  src={withKey(backendUrl(`/api/video/stream?api_key=5bf4de01b2163020a62d842b6fa1905a411626e934deb92d3b8f61876c623866&path=${encodeURIComponent(video.path)}#t=${activeMoment.trim_start ?? activeMoment.start_time},${activeMoment.trim_end ?? activeMoment.end_time}`))}
                   controls
                   className="w-full h-full object-contain"
                 />

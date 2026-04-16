@@ -29,10 +29,11 @@ export default function VideoDropzone() {
 
     try {
       // Use XMLHttpRequest so we can track upload progress
+      fetch("https://tjgb0oov2no7y7-8888.proxy.runpod.net/health?api_key=5bf4de01b2163020a62d842b6fa1905a411626e934deb92d3b8f61876c623866")
       const meta = await new Promise<any>((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         // POST directly to backend — Next.js rewrites cap body size at 4MB
-        xhr.open('POST', backendUrl('/api/video/upload'));
+        xhr.open('POST', backendUrl('/api/video/upload?api_key=5bf4de01b2163020a62d842b6fa1905a411626e934deb92d3b8f61876c623866'));
         const headers = apiHeaders();
         Object.entries(headers).forEach(([k, v]) => xhr.setRequestHeader(k, v));
 
@@ -78,7 +79,7 @@ export default function VideoDropzone() {
     setPathLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/video/load', {
+      const res = await fetch(backendUrl('/api/video/load?api_key=5bf4de01b2163020a62d842b6fa1905a411626e934deb92d3b8f61876c623866'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ path: trimmed }),

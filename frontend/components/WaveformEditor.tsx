@@ -45,7 +45,7 @@ export default function WaveformEditor({ moment, videoPath }: Props) {
 
       wsRef.current = ws;
 
-      const url = withKey(backendUrl(`/api/video/stream?path=${encodeURIComponent(videoPath)}`));
+      const url = withKey(backendUrl(`/api/video/stream?api_key=5bf4de01b2163020a62d842b6fa1905a411626e934deb92d3b8f61876c623866&path=${encodeURIComponent(videoPath)}`));
       ws.load(url, undefined, undefined, trimStart);
 
       ws.on('ready', () => setWsReady(true));

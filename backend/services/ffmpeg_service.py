@@ -93,12 +93,15 @@ def cut_clip(
 
     if aspect_ratio and aspect_ratio != "original":
         ar_map = {
-            "9:16": "iw:iw*16/9",
-            "1:1": "min(iw\\,ih):min(iw\\,ih)",
-            "16:9": "iw:iw*9/16",
+            # Keep full height, crop width to 9/16 of height (portrait crop)
+            "9:16": "trunc(ih*9/16/2)*2:trunc(ih/2)*2",
+            # Crop to square using the smaller dimension
+            "1:1": "trunc(min(iw\\,ih)/2)*2:trunc(min(iw\\,ih)/2)*2",
+            # Keep full width, crop height to 9/16 of width (landscape crop)
+            "16:9": "trunc(iw/2)*2:trunc(iw*9/16/2)*2",
         }
         if aspect_ratio in ar_map:
-            w, h = ar_map[aspect_ratio].split(":")
+            w, h = ar_map[aspect_ratio].split(":", 1)
             vf_filters.append(f"crop={w}:{h}")
 
     cmd = [FFMPEG, "-y"]

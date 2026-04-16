@@ -57,7 +57,7 @@ export default function ExportPage() {
       output_dir: exportSettings.output_dir || null,
     }));
 
-    const res = await fetch('/api/render/batch', {
+    const res = await fetch(backendUrl('/api/render/batch?api_key=5bf4de01b2163020a62d842b6fa1905a411626e934deb92d3b8f61876c623866'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ clips }),
@@ -79,7 +79,7 @@ export default function ExportPage() {
 
   const downloadZip = async () => {
     setZipping(true);
-    const res = await fetch('/api/export/zip');
+    const res = await fetch(backendUrl('/api/export/zip?api_key=5bf4de01b2163020a62d842b6fa1905a411626e934deb92d3b8f61876c623866'));
     const blob = await res.blob();
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -91,7 +91,7 @@ export default function ExportPage() {
   };
 
   const openFolder = async () => {
-    await fetch('/api/export/open-folder', {
+    await fetch(backendUrl('/api/export/open-folder?api_key=5bf4de01b2163020a62d842b6fa1905a411626e934deb92d3b8f61876c623866'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ path: exportSettings.output_dir || '' }),
@@ -235,7 +235,7 @@ export default function ExportPage() {
                             </div>
                             <div className="flex gap-2">
                               <a
-                                href={withKey(backendUrl(`/api/export/download/${r.url?.split('/').pop()}`))}
+                                href={withKey(backendUrl(`/api/export/download/${r.url?.split('/').pop()}?api_key=5bf4de01b2163020a62d842b6fa1905a411626e934deb92d3b8f61876c623866`))}
                                 download
                                 className="flex items-center gap-1 px-3 py-1.5 bg-gold text-black text-xs font-semibold rounded-lg hover:bg-gold-dim transition-colors"
                               >
